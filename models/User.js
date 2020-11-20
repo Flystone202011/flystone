@@ -7,4 +7,5 @@ const userSchema = new Schema({
   password: String,
 });
 
-mongoose.model("users", userSchema);
+//module.exportsなかったので追加2020/11/19 野老
+module.exports=mongoose.model("users", userSchema);

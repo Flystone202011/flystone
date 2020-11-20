@@ -23,6 +23,9 @@ const app = express();
 app.use(bodyParser.json());
 
 require("./routes/authRoutes")(app);
+//userのAPI
+const userRoute=require("./routes/user")
+app.use("/users",userRoute)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
