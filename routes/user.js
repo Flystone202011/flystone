@@ -2,18 +2,37 @@ const express=require("express");
 const router=express.Router();
 const users=require("../models/User");
 
-//userのページング取得,未完成
-router.get('/:page-:limit',async(req,res)=>{
-    try{
-        const page = parseInt(req.query.page);
-        const limit = parseInt(req.query.limit); 
-        const offset = page ? page * limit : 0;
-        const user=await users.find({}).skip(offset).limit(limit);
-        res.json(user);
-    }catch(err){
-        res.json({message:err});
+//dotenvを利用して.envで環境変数を利用、ここではlimitを使用するために利用
+require('dotenv').config();
+
+//userのページング取得、条件設定なし＝全取得
+router.route("/all/:page").get(function(req, res) {
+  var aggregateQuery = users.aggregate();
+    //値を調整できるように改良する必要あり
+  users.aggregatePaginate(aggregateQuery, { page: req.params.page, limit: process.env.LIMIT }, function(err,result) {
+    if (err) {
+      console.err(err);
+    } else {
+      res.json(result);
     }
-})
+  });
+});
+
+//userのページング取得、検索実施(username)
+router.route("/search/:page/:user").get(function(req, res) {
+//「/.*対象文字.*/」or「/対象文字/」これで検索対象の値を書くことによってlike検索を行うことが出来る。
+    const value=req.params.user;
+    // new RegExp(".*" + 検索文字or変数 + ".*" , "i")
+    var aggregateQuery = users.aggregate([{$match:{username:new RegExp(".*" + value + ".*" , "i")}}]);
+      //値を調整できるように改良する必要あり0
+    users.aggregatePaginate(aggregateQuery, { page: req.params.page, limit: process.env.LIMIT }, function(err,result) {
+      if (err) {
+        console.err(err);
+      } else {
+        res.json(result);
+      }
+    });
+  });
 
 //全userの検索
 router.get("/",async(req,res)=>{
