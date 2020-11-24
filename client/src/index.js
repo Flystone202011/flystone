@@ -3,12 +3,10 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
-import createSagaMiddleware from "redux-saga";
+import reduxThunk from "redux-thunk";
 
 import App from "./App";
 import rootReducer from "./store/reducers/rootReducer";
-
-const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -17,7 +15,10 @@ const composeEnhancers =
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
+  {
+    auth: { authenticated: localStorage.getItem("token") },
+  },
+  composeEnhancers(applyMiddleware(reduxThunk))
 );
 
 const app = (
