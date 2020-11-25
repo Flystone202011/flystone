@@ -26,7 +26,7 @@ export default class UserList extends Component{
             .then(res=>console.log(res.data));
 
         this.setState({
-            users:this.state.users.filter(ul=>ul._Id !== id)
+            users:this.state.users.filter(ul=>ul._id !== id)
         })
     }
     //user一覧のリスト
