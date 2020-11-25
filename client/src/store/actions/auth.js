@@ -12,7 +12,7 @@ export const signup = (formProps, callback) => async (dispatch) => {
     localStorage.setItem("token", response.data.token);
     callback();
   } catch (e) {
-    dispatch({ type: actionTypes.AUTH_ERROR, payload: "Email in use" });
+    dispatch({ type: actionTypes.AUTH_ERROR, payload: "userId in use" });
   }
 };
 

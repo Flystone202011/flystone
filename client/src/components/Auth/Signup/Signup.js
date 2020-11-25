@@ -17,8 +17,13 @@ const Singup = (props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        <label>Email</label>
-        <Field name="email" type="text" component="input" autoComplete="none" />
+        <label>userId</label>
+        <Field
+          name="userId"
+          type="text"
+          component="input"
+          autoComplete="none"
+        />
       </fieldset>
       <fieldset>
         <label>Password</label>
