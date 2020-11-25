@@ -1,7 +1,14 @@
 import React from "react";
+import {BrowserRouter as Router,Route} from "react-router-dom";
+
+import UserList from "./components/userList.component";
 
 const App = (props) => {
-  return <h1>App</h1>;
+  return(
+    <Router>
+      <Route path="/" exact component={UserList}/>
+    </Router>
+  )
 };
 
 export default App;

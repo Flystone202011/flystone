@@ -44,9 +44,9 @@ router.get("/",async(req,res)=>{
     }
 })
 //特定userの検索
-router.get('/:userId',async(req,res)=>{
+router.get('/:id',async(req,res)=>{
     try{
-        const user=await users.find({userId:req.params.userId})
+        const user=await users.find({_Id:req.params.id})
         res.json(user);
     }catch(err){
         res.json({message:err});
@@ -68,9 +68,9 @@ router.post("/",async(req,res)=>{
     }
 });
 //user更新して変更したものを取得する。
-router.patch("/:userId",async(req,res)=>{
+router.patch("/:id",async(req,res)=>{
     try{
-        const updatedUser=await users.findOneAndUpdate({userId:req.params.userId},{$set:{username:req.body.username,password:req.body.password}})
+        const updatedUser=await users.findOneAndUpdate({_Id:req.params.id},{$set:{username:req.body.username,password:req.body.password}})
         res.json(updatedUser)
     }catch(err){
         res.json({message:err});
@@ -78,9 +78,9 @@ router.patch("/:userId",async(req,res)=>{
 });
 
 //user削除
-router.delete("/:userId",async(req,res)=>{
+router.delete("/:id",async(req,res)=>{
     try{
-        const removedUser=await users.remove({userId:req.params.postId})
+        const removedUser=await users.findByIdAndDelete(req.params.id)
         res.json(removedUser);
     }catch(err){
         res.json({message:err});
