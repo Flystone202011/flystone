@@ -3,7 +3,9 @@ import { reduxForm, Field } from "redux-form";
 import { compose } from "redux";
 import { connect } from "react-redux";
 
-import * as actions from "../../../store/actions/index";
+import * as actions from "../../../store/actions/auth";
+import classes from "./Signup.module.css";
+import Button from "../../UI/Button/Button";
 
 const Singup = (props) => {
   const onSubmit = (formProps) => {
@@ -15,28 +17,29 @@ const Singup = (props) => {
   const { handleSubmit } = props;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <fieldset>
-        <label>userId</label>
+    <div className={classes.Auth}>
+      <h3>Sign Up</h3>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label className={classes.Label}>userId</label>
         <Field
+          className={classes.InputElement}
           name="userId"
           type="text"
           component="input"
           autoComplete="none"
         />
-      </fieldset>
-      <fieldset>
-        <label>Password</label>
+        <label className={classes.Label}>Password</label>
         <Field
+          className={classes.InputElement}
           name="password"
           type="password"
           component="input"
           autoComplete="none"
         />
-      </fieldset>
-      <div>{props.errorMessage}</div>
-      <button>Sign up</button>
-    </form>
+        <div style={{ color: "red" }}>{props.errorMessage}</div>
+        <Button btnType="Success">Sign up</Button>
+      </form>
+    </div>
   );
 };
 

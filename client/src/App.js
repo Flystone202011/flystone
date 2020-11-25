@@ -14,6 +14,7 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact component={Welcome} />
         <Route path="/signup" component={Singup} />
+        {/* ここの下に野老くんのコンポーネント入れる */}
         <Route path="/users" component={Feature} />
         <Route path="/signout" component={Signout} />
         <Route path="/signin" component={Signin} />
