@@ -1,10 +1,19 @@
-const initialState = {
-  token: null,
-  userId: null,
+import * as actionTypes from "../actions/types";
+
+const INITIAL_STATE = {
+  authenticated: "",
+  errorMessage: "",
 };
 
-const reducer = (state = initialState, action) => {
-  return state;
+const reducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case actionTypes.AUTH_USER:
+      return { ...state, authenticated: action.payload };
+    case actionTypes.AUTH_ERROR:
+      return { ...state, errorMessage: action.payload };
+    default:
+      return state;
+  }
 };
 
 export default reducer;

@@ -1,11 +1,13 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const mongoose = require("mongoose");
 
 const keys = require("./config/keys");
 
-require("./models/User");
+const app = express();
 
+//DB Setup
 mongoose.connect(keys.mongoURI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -19,11 +21,18 @@ mongoose.connection.on("error", (err) => {
   console.error("Error connecting to mongo", err);
 });
 
-const app = express();
-app.use(bodyParser.json());
+//App Setup
 
+//logging framework
+app.use(morgan("combined"));
+//parsed any coming request to json
+app.use(bodyParser.json({ type: "*/*" }));
+
+//routing
 require("./routes/authRoutes")(app);
 require("./routes/userRoutes")(app);
 
+//Server Setup
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
+console.log("Server listening on:", PORT);
