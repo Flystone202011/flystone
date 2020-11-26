@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import { Route, Switch } from "react-router-dom";
 
 import Layout from "./hoc/Layout/Layout";
@@ -20,6 +21,18 @@ const App = (props) => {
       </Switch>
     </Layout>
   );
+=======
+import {BrowserRouter as Router,Route} from "react-router-dom";
+
+import UserList from "./components/userList.component";
+
+const App = (props) => {
+  return(
+    <Router>
+      <Route path="/" exact component={UserList}/>
+    </Router>
+  )
+>>>>>>> users
 };
 
 export default App;
