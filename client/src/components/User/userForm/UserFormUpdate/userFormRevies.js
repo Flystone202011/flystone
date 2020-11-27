@@ -3,9 +3,10 @@ import React from "react";
 import {connect} from "react-redux";
 import formUpdateFields from "./formUpdateFields";
 import {withRouter} from "react-router-dom";
-import { submitUser } from "./userAction";
+import { submitUpdateUser } from "./userAction";
+import {searchUser} from "../userAction"
 
-const UserFormReview = ({onCancel,formValues})=>{
+const UserFormReview = ({onCancel,formValues,history})=>{
     const reviewFields=formUpdateFields.map(formField=>{
         return(
             <div key={formField.name}>
@@ -14,6 +15,7 @@ const UserFormReview = ({onCancel,formValues})=>{
             </div>
         );
     });
+    const id = this.props.match.params.id;
     return(
         <div>
             <h5>入力内容確認</h5>
@@ -21,7 +23,7 @@ const UserFormReview = ({onCancel,formValues})=>{
             <butto onClick={onCancel}>
                 戻る
             </butto>
-            <button onClick={()=>submitUser(formValues)}>
+            <button onClick={()=>submitUpdateUser(id,formValues,history)}>
                 登録
             </button>
         </div>

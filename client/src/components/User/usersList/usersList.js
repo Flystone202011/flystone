@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import axios from "axios";
 import UserListPart from "../parts/userList.part";
+import {Link} from "react-router-dom";
 
 //user一覧
 export default class UserList extends Component{
@@ -40,6 +41,9 @@ export default class UserList extends Component{
         return(
         <div>
             <h3>ユーザー一覧</h3>
+            <Link to="/user/create">
+                新規登録
+            </Link>
             <table>
                 <thead>
                     <tr>

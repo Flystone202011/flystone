@@ -6,18 +6,52 @@ import {reduxForm,Field} from "redux-form";
 import {Link} from "react-router-dom";
 import userField from "../userField";
 import formUpdateFields from "./formUpdateFields";
+import { searchUser } from "../userAction";
+import * as Validator from "../../UserValidate"
 
-class UserForm extends Component{
+const id = this.props.match.params.id;
+const user=searchUser(id);
+
+class UserFormUpdate extends Component{
+    
     renderFields(){
         return formUpdateFields.map(formField=>{
+            if(formField.name==="password"){
+                return(
+                <Field
+                    key={formField.name}
+                    label={formField.label}
+                    type="password"
+                    name={formField.name}
+                    component={userField}
+                    validate={[Validator.password, Validator.required]}
+                    />
+                )
+            }else if(formField.name==="passwordConfirm"){
+                return(
+                    <Field
+                        key={formField.name}
+                        label={formField.label}
+                        type="password"
+                        name={formField.name}
+                        component={userField}
+                        validate={[(value, values) => (
+                            Validator.confirmPass(value)(values.password)
+                          ), Validator.required]}
+                        />
+                    )
+            }else{
             return(
                 <Field
                     key={formField.name}
                     label={formField.label}
                     type="text"
                     name={formField.name}
-                    component={userField}/>
+                    component={userField}
+                    validate={[Validator.userId, Validator.required]}
+                    />
             );
+            }
         });
     }
     render(){
@@ -25,6 +59,9 @@ class UserForm extends Component{
             <div>
                 <form onSubmit={this.props.handleSubmit(this.props.onUserSubmit)}>
                     {this.renderFields()}
+                    <Link to="/users">
+                        一覧に戻る
+                    </Link>
                     <button type="submit">
                         確認
                     </button>
@@ -35,6 +72,7 @@ class UserForm extends Component{
 }
 
 export default reduxForm({
-    form:"userForm",
+    form:"userFormUpdate",
     destroyOnUnmount:false,
-})(UserForm);
+    initialValues: { userName: user.username } 
+})(UserFormUpdate);

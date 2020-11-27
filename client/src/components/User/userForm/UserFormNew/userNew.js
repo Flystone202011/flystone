@@ -27,4 +27,4 @@ class UserNew extends Component{
         return <div>{this.renderContent()}</div>;
     }
 }
-export default reduxForm({form:"userForm"})(UserNew);
+export default reduxForm({form:"userFormNew"})(UserNew);

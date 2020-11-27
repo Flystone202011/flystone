@@ -3,9 +3,9 @@ import React from "react";
 import {connect} from "react-redux";
 import formFields from "./UserFormNew/formNewFields";
 import {withRouter} from "react-router-dom";
-import { submitUser } from "./userAction";
+import { submitNewUser } from "./userAction";
 
-const UserFormNewReview = ({onCancel,formValues})=>{
+const UserFormNewReview = ({onCancel,formValues,history})=>{
     const reviewFields=formFields.map(formField=>{
         return(
             <div key={formField.name}>
@@ -21,7 +21,7 @@ const UserFormNewReview = ({onCancel,formValues})=>{
             <butto onClick={onCancel}>
                 戻る
             </butto>
-            <button onClick={()=>submitUser(formValues)}>
+            <button onClick={()=>submitNewUser(formValues,history)}>
                 登録
             </button>
         </div>
