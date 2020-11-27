@@ -1,5 +1,5 @@
 export default [
-    { label: "UserName", name: "userName" },
-    { label: "Password", name: "password" },
-    { label: "PasswordConfirm", name: "passwordConfirm" },
+    { label: "UserName", name: "username",type:"text"  },
+    { label: "Password", name: "password",type:"password"  },
+    { label: "PasswordConfirm", name: "passwordConfirm",type:"password"  },
   ];

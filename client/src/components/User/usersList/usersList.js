@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import axios from "axios";
-import UserListPart from "../parts/userList.part";
+import UserListPart from "./userList.part";
 import {Link} from "react-router-dom";
 
 //user一覧

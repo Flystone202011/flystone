@@ -9,6 +9,7 @@ class UserUpdate extends Component{
     state={
         showFormReview:false,
     };
+    
     renderContent(){
         if(this.state.showFormReview){
             return(

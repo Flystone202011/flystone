@@ -12,7 +12,7 @@ export const submitNewUser=(values,history)=>{
 }
 
 export const submitUpdateUser=(id,values,history)=>{
-    axios.patch("http://localhost:5000/users"+id,values)
+    axios.put("http://localhost:5000/users/"+id,values)
             .then(res=>{
                 console.log(res.data);
                 history.push("/users");
@@ -22,9 +22,9 @@ export const submitUpdateUser=(id,values,history)=>{
             })
 }
 export const searchUser=(id)=>{
-    axios.get("http://localhost:5000/users"+id)
+    axios.get("http://localhost:5000/users/"+id)
             .then(res=>{
-                return res.date;
+                return res.data;
             })
             .catch((err)=>{
                 console.log(err);

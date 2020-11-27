@@ -3,10 +3,9 @@ import React from "react";
 import {connect} from "react-redux";
 import formUpdateFields from "./formUpdateFields";
 import {withRouter} from "react-router-dom";
-import { submitUpdateUser } from "./userAction";
-import {searchUser} from "../userAction"
+import { submitUpdateUser } from "../userAction";
 
-const UserFormReview = ({onCancel,formValues,history})=>{
+const UserFormReview = ({onCancel,formValues,history,match})=>{
     const reviewFields=formUpdateFields.map(formField=>{
         return(
             <div key={formField.name}>
@@ -15,7 +14,6 @@ const UserFormReview = ({onCancel,formValues,history})=>{
             </div>
         );
     });
-    const id = this.props.match.params.id;
     return(
         <div>
             <h5>入力内容確認</h5>
@@ -23,7 +21,7 @@ const UserFormReview = ({onCancel,formValues,history})=>{
             <butto onClick={onCancel}>
                 戻る
             </butto>
-            <button onClick={()=>submitUpdateUser(id,formValues,history)}>
+            <button onClick={()=>submitUpdateUser(match.params.id,formValues,history)}>
                 登録
             </button>
         </div>
@@ -31,7 +29,7 @@ const UserFormReview = ({onCancel,formValues,history})=>{
 };
 //reduxの値を取得
 function mapStateToProps(state) {
-    return { formValues: state.form.userForm.values };
+    return { formValues: state.form.userFormUpdate.values };
 }
 
-export default connect(mapStateToProps,submitUser)(withRouter(UserFormReview));
+export default connect(mapStateToProps,submitUpdateUser)(withRouter(UserFormReview));

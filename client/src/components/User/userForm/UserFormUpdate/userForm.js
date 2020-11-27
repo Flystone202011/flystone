@@ -9,11 +9,10 @@ import formUpdateFields from "./formUpdateFields";
 import { searchUser } from "../userAction";
 import * as Validator from "../../UserValidate"
 
-const id = this.props.match.params.id;
-const user=searchUser(id);
+
 
 class UserFormUpdate extends Component{
-    
+
     renderFields(){
         return formUpdateFields.map(formField=>{
             if(formField.name==="password"){
@@ -21,7 +20,7 @@ class UserFormUpdate extends Component{
                 <Field
                     key={formField.name}
                     label={formField.label}
-                    type="password"
+                    type={formField.type}
                     name={formField.name}
                     component={userField}
                     validate={[Validator.password, Validator.required]}
@@ -32,12 +31,10 @@ class UserFormUpdate extends Component{
                     <Field
                         key={formField.name}
                         label={formField.label}
-                        type="password"
+                        type={formField.type}
                         name={formField.name}
                         component={userField}
-                        validate={[(value, values) => (
-                            Validator.confirmPass(value)(values.password)
-                          ), Validator.required]}
+                        validate={[(value, values) => (Validator.confirmPass(value)(values.password)), Validator.required]}
                         />
                     )
             }else{
@@ -45,7 +42,7 @@ class UserFormUpdate extends Component{
                 <Field
                     key={formField.name}
                     label={formField.label}
-                    type="text"
+                    type={formField.type}
                     name={formField.name}
                     component={userField}
                     validate={[Validator.userId, Validator.required]}
@@ -71,8 +68,8 @@ class UserFormUpdate extends Component{
     }
 }
 
+
 export default reduxForm({
     form:"userFormUpdate",
     destroyOnUnmount:false,
-    initialValues: { userName: user.username } 
 })(UserFormUpdate);

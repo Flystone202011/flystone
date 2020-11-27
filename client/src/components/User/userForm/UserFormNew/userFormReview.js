@@ -1,9 +1,9 @@
 //フォーム入力内容を確認する
 import React from "react";
 import {connect} from "react-redux";
-import formFields from "./UserFormNew/formNewFields";
+import formFields from "./formNewFields";
 import {withRouter} from "react-router-dom";
-import { submitNewUser } from "./userAction";
+import { submitNewUser } from "../userAction";
 
 const UserFormNewReview = ({onCancel,formValues,history})=>{
     const reviewFields=formFields.map(formField=>{
@@ -32,4 +32,4 @@ function mapStateToProps(state) {
     return { formValues: state.form.userFormNew.values };
 }
 
-export default connect(mapStateToProps,submitUser)(withRouter(UserFormNewReview));
+export default connect(mapStateToProps,submitNewUser)(withRouter(UserFormNewReview));

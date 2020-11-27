@@ -22,13 +22,13 @@ const store = createStore(
 );
 
 const app = (
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 ReactDOM.render(app, document.getElementById("root"));

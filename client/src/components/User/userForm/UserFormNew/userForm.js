@@ -4,7 +4,7 @@ import React,{Component} from "react";
 import {reduxForm,Field} from "redux-form";
 import {Link} from "react-router-dom";
 import userField from "../userField";
-import formNewFields from "./UserFormNew/formNewFields";
+import formNewFields from "./formNewFields";
 import * as Validator from "../../UserValidate"
 
 class UserFormNew extends Component{
@@ -15,7 +15,7 @@ class UserFormNew extends Component{
                 <Field
                     key={formField.name}
                     label={formField.label}
-                    type="password"
+                    type={formField.type}
                     name={formField.name}
                     component={userField}
                     validate={[Validator.password, Validator.required]}
@@ -26,7 +26,7 @@ class UserFormNew extends Component{
                     <Field
                         key={formField.name}
                         label={formField.label}
-                        type="password"
+                        type={formField.type}
                         name={formField.name}
                         component={userField}
                         validate={[(value, values) => (
@@ -39,7 +39,7 @@ class UserFormNew extends Component{
                 <Field
                     key={formField.name}
                     label={formField.label}
-                    type="text"
+                    type={formField.type}
                     name={formField.name}
                     component={userField}
                     validate={[Validator.userId, Validator.required]}
@@ -50,7 +50,7 @@ class UserFormNew extends Component{
                     <Field
                         key={formField.name}
                         label={formField.label}
-                        type="text"
+                        type={formField.type}
                         name={formField.name}
                         component={userField}
                         validate={Validator.required}
