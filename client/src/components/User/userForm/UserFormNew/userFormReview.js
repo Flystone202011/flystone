@@ -5,7 +5,7 @@ import formFields from "./UserFormNew/formNewFields";
 import {withRouter} from "react-router-dom";
 import { submitUser } from "./userAction";
 
-const UserFormReview = ({onCancel,formValues})=>{
+const UserFormNewReview = ({onCancel,formValues})=>{
     const reviewFields=formFields.map(formField=>{
         return(
             <div key={formField.name}>
@@ -29,7 +29,7 @@ const UserFormReview = ({onCancel,formValues})=>{
 };
 //reduxの値を取得
 function mapStateToProps(state) {
-    return { formValues: state.form.userForm.values };
+    return { formValues: state.form.userFormNew.values };
 }
 
-export default connect(mapStateToProps,submitUser)(withRouter(UserFormReview));
+export default connect(mapStateToProps,submitUser)(withRouter(UserFormNewReview));

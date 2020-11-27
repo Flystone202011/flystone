@@ -3,10 +3,10 @@
 import React,{Component} from "react";
 import {reduxForm,Field} from "redux-form";
 import {Link} from "react-router-dom";
-import userField from "./userField";
+import userField from "../userField";
 import formNewFields from "./UserFormNew/formNewFields";
 
-class UserForm extends Component{
+class UserFormNew extends Component{
     renderFields(){
         return formNewFields.map(formField=>{
             return(
@@ -36,4 +36,4 @@ class UserForm extends Component{
 export default reduxForm({
     form:"userForm",
     destroyOnUnmount:false,
-})(UserForm);
+})(UserFormNew);

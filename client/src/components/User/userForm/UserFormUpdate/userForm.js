@@ -4,7 +4,7 @@
 import React,{Component} from "react";
 import {reduxForm,Field} from "redux-form";
 import {Link} from "react-router-dom";
-import userField from "./userField";
+import userField from "../userField";
 import formUpdateFields from "./formUpdateFields";
 
 class UserForm extends Component{
