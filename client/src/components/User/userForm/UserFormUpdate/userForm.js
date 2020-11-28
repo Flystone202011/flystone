@@ -3,17 +3,18 @@
 
 import React,{Component} from "react";
 import {reduxForm,Field} from "redux-form";
-import {Link} from "react-router-dom";
 import userField from "../userField";
 import formUpdateFields from "./formUpdateFields";
-import { searchUser } from "../userAction";
 import * as Validator from "../../UserValidate"
-
-
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 
 class UserFormUpdate extends Component{
 
     renderFields(){
+
         return formUpdateFields.map(formField=>{
             if(formField.name==="password"){
                 return(
@@ -53,23 +54,28 @@ class UserFormUpdate extends Component{
     }
     render(){
         return(
-            <div>
+            <Grid container alignItems="center" justify="center">
                 <form onSubmit={this.props.handleSubmit(this.props.onUserSubmit)}>
                     {this.renderFields()}
-                    <Link to="/users">
+                    <Link href="/userList">
                         一覧に戻る
                     </Link>
-                    <button type="submit">
+                    <Button variant="contained" type="submit" color="primary">
                         確認
-                    </button>
+                    </Button>
                 </form>
-            </div>
+            </Grid>
         )
     }
 }
 
+const mapStateToProps = (state, props) => ({
+    initialValues: {username:state.user},
+  })
 
-export default reduxForm({
-    form:"userFormUpdate",
-    destroyOnUnmount:false,
-})(UserFormUpdate);
+  export default connect(
+    mapStateToProps
+  )(reduxForm({
+     form: "userFormUpdate", 
+     destroyOnUnmount:false,
+  })(UserFormUpdate));

@@ -4,7 +4,7 @@ export const submitNewUser=(values,history)=>{
     axios.post("http://localhost:5000/users",values)
             .then(res=>{
                 console.log(res.data);
-                history.push("/users");
+                history.push("/userList");
             })
             .catch((err)=>{
                 console.log(err);
@@ -15,7 +15,7 @@ export const submitUpdateUser=(id,values,history)=>{
     axios.put("http://localhost:5000/users/"+id,values)
             .then(res=>{
                 console.log(res.data);
-                history.push("/users");
+                history.push("/userList");
             })
             .catch((err)=>{
                 console.log(err);

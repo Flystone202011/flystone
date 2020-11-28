@@ -1,7 +1,16 @@
 import React,{Component} from "react";
 import axios from "axios";
 import UserListPart from "./userList.part";
-import {Link} from "react-router-dom";
+import Link from '@material-ui/core/Link';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 //user一覧
 export default class UserList extends Component{
@@ -36,26 +45,28 @@ export default class UserList extends Component{
             return<UserListPart user={currentUser} deleteUser={this.deleteUser} key={currentUser._id}/>;
         })
     }
-
     render(){
         return(
-        <div>
-            <h3>ユーザー一覧</h3>
-            <Link to="/user/create">
+        <Grid container alignItems="center" justify="center">
+            <Typography variant="h5" gutterBottom>ユーザー一覧</Typography>
+            <Link href="/user/create">
                 新規登録
             </Link>
-            <table>
-                <thead>
-                    <tr>
-                        <th>userId</th>
-                        <th>userName</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <TableContainer>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>userId</TableCell>
+                        <TableCell>userName</TableCell>
+                        <TableCell>action</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     {this.userList()}
-                </tbody>
-            </table>
-        </div>
+                </TableBody>
+            </Table>
+            </TableContainer>
+        </Grid>
         )
     }
 }

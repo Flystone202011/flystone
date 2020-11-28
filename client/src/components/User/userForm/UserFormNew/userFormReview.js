@@ -1,4 +1,6 @@
 //フォーム入力内容を確認する
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import React from "react";
 import {connect} from "react-redux";
 import formFields from "./formNewFields";
@@ -15,16 +17,19 @@ const UserFormNewReview = ({onCancel,formValues,history})=>{
         );
     });
     return(
+        <center>
         <div>
-            <h5>入力内容確認</h5>
+            <Typography variant="h3" gutterBottom>入力内容確認</Typography>
             {reviewFields}
-            <butto onClick={onCancel}>
+            <Button variant="contained" color="secondary" onClick={onCancel}>
                 戻る
-            </butto>
-            <button onClick={()=>submitNewUser(formValues,history)}>
+            </Button>
+            <Button variant="contained" color="primary" onClick={()=>submitNewUser(formValues,history)}>
                 登録
-            </button>
+            </Button>
         </div>
+        </center>
+        
     );
 };
 //reduxの値を取得
@@ -32,4 +37,4 @@ function mapStateToProps(state) {
     return { formValues: state.form.userFormNew.values };
 }
 
-export default connect(mapStateToProps,submitNewUser)(withRouter(UserFormNewReview));
+export default connect(mapStateToProps,{submitNewUser})(withRouter(UserFormNewReview));

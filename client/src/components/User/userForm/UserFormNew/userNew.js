@@ -1,5 +1,4 @@
 //user登録フォームの組み立て
-
 import React,{Component} from "react";
 import {reduxForm} from "redux-form";
 import UserForm from "./userForm";

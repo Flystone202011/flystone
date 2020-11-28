@@ -4,7 +4,6 @@ import React,{Component} from "react";
 import {reduxForm} from "redux-form";
 import UserForm from "./userForm";
 import UserFormReview from "./userFormReview";
-
 class UserUpdate extends Component{
     state={
         showFormReview:false,

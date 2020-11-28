@@ -1,14 +1,16 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import Link from '@material-ui/core/Link';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 
 const UserListPart=props=>(
-    <tr>
-        <td>{props.user.userId}</td>
-        <td>{props.user.username}</td>
-        <td>
-            <Link to={"user/edit/"+props.user._id}>edit</Link>|<a href="#" onClick={()=>{props.deleteUser(props.user._id)}}>delete</a>
-        </td>
-    </tr>
+    <TableRow>
+        <TableCell>{props.user.userId}</TableCell>
+        <TableCell>{props.user.username}</TableCell>
+        <TableCell>
+            <Link href={"user/edit/"+props.user._id}>edit</Link>|<Link href="#" onClick={()=>{props.deleteUser(props.user._id)}}>delete</Link>
+        </TableCell>
+    </TableRow>
 )
 
 export default UserListPart;

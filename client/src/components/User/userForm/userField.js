@@ -1,13 +1,13 @@
 //Formのテキスト部品
 
 import React from "react";
+import TextField from '@material-ui/core/TextField';
 
-export default({input,label,type,valueDefault,meta:{error,touched}})=>{
+export default({input,label,type,meta:{error,touched}})=>{
     return(
         <div>
-            <label>{label}</label>
-            <input {...input} type={type} defaultValue={valueDefault}/>
-            <div className="red-text" style={{ marginBottom: "10px" }}>
+            <TextField  {...input} type={type} label={label}/>
+            <div className="red-text" style={{ color: "#ff0000",marginBottom: "10px" }}>
                  {touched && error}
            </div>
         </div>

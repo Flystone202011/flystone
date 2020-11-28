@@ -2,10 +2,13 @@
 
 import React,{Component} from "react";
 import {reduxForm,Field} from "redux-form";
-import {Link} from "react-router-dom";
 import userField from "../userField";
 import formNewFields from "./formNewFields";
-import * as Validator from "../../UserValidate"
+import * as Validator from "../../UserValidate";
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
+
 
 class UserFormNew extends Component{
     renderFields(){
@@ -62,17 +65,17 @@ class UserFormNew extends Component{
     }
     render(){
         return(
-            <div>
-                <form onSubmit={this.props.handleSubmit(this.props.onUserSubmit)}>
+            <Grid container alignItems="center" justify="center">
+                <form  onSubmit={this.props.handleSubmit(this.props.onUserSubmit)}>
                     {this.renderFields()}
-                    <Link to="/users">
+                    <Link href="/userList">
                         一覧に戻る
                     </Link>
-                    <button type="submit">
+                    <Button variant="contained" type="submit" color="primary">
                         確認
-                    </button>
+                    </Button>
                 </form>
-            </div>
+            </Grid>
         )
     }
 }

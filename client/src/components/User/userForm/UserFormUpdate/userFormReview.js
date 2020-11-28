@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import formUpdateFields from "./formUpdateFields";
 import {withRouter} from "react-router-dom";
 import { submitUpdateUser } from "../userAction";
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const UserFormReview = ({onCancel,formValues,history,match})=>{
     const reviewFields=formUpdateFields.map(formField=>{
@@ -15,16 +17,18 @@ const UserFormReview = ({onCancel,formValues,history,match})=>{
         );
     });
     return(
+        <center>
         <div>
-            <h5>入力内容確認</h5>
+            <Typography variant="h3" gutterBottom>入力内容確認</Typography>
             {reviewFields}
-            <butto onClick={onCancel}>
+            <Button variant="contained" color="secondary" onClick={onCancel}>
                 戻る
-            </butto>
-            <button onClick={()=>submitUpdateUser(match.params.id,formValues,history)}>
+            </Button>
+            <Button variant="contained" color="primary" onClick={()=>submitUpdateUser(match.params.id,formValues,history)}>
                 登録
-            </button>
+            </Button>
         </div>
+        </center>
     );
 };
 //reduxの値を取得
@@ -32,4 +36,4 @@ function mapStateToProps(state) {
     return { formValues: state.form.userFormUpdate.values };
 }
 
-export default connect(mapStateToProps,submitUpdateUser)(withRouter(UserFormReview));
+export default connect(mapStateToProps,{submitUpdateUser})(withRouter(UserFormReview));
