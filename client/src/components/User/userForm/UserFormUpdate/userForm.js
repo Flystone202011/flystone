@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 class UserFormUpdate extends Component{
 
     renderFields(){
-
         return formUpdateFields.map(formField=>{
             if(formField.name==="password"){
                 return(
@@ -68,9 +67,8 @@ class UserFormUpdate extends Component{
         )
     }
 }
-
-const mapStateToProps = (state, props) => ({
-    initialValues: {username:state.user},
+const mapStateToProps = (state) => ({
+    initialValues: {username:state.user.username},
   })
 
   export default connect(
