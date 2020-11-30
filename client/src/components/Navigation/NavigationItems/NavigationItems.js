@@ -10,7 +10,7 @@ const NavigationItems = (props) => {
       {props.isAuthenticated && (
         <>
           <NavigationItem link="/signout">Sign Out</NavigationItem>
-          <NavigationItem link="/users">Users</NavigationItem>
+          <NavigationItem link="/userList">Users</NavigationItem>
         </>
       )}
       {props.isAuthenticated || (

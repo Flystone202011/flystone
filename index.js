@@ -30,6 +30,7 @@ app.use(bodyParser.json({ type: "*/*" }));
 
 //routing
 require("./routes/authRoutes")(app);
+require("./routes/userRoutes")(app);
 
 //Server Setup
 const PORT = process.env.PORT || 5000;

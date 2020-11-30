@@ -56,15 +56,16 @@ exports.create_users=function(req,res){
 };
 //user更新して変更したものを取得する。
 exports.update_user=function(req,res){
-    users.findByIdAndUpdate(
-        {_id:req.params.id},
-        req.body,
-        {new:true},
-        function(err,user){
-            if(err)res.send(err);
-            res.json(user);
-        }
-    );
+    users.findById(req.params.id)
+        .then(user=>{
+            user.username=req.body.username;
+            user.password=req.body.password;
+
+            user.save()
+            .then(()=>res.json("updated"))
+            .catch(err=>res.status(400).json("Error:"+err));
+        })
+        .catch(err=>res.status(400).json("Error:"+err));
 };
 
 //user削除

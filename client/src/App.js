@@ -18,7 +18,6 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact component={Welcome} />
         <Route path="/signup" component={Singup} />
-        <Route path="/users" component={Feature} />
         <Route path="/signout" component={Signout} />
         <Route path="/signin" component={Signin} />
         <Route path="/userList" component={userList} />
@@ -27,5 +26,5 @@ const App = (props) => {
       </Switch>
     </Layout>
   );
-  }
+};
 export default App;
