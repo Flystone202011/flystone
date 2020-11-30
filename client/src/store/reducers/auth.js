@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionTypes.AUTH_USER:
-      return { ...state, authenticated: action.payload };
+      return { ...state, authenticated: action.payload, errorMessage: "" };
     case actionTypes.AUTH_ERROR:
       return { ...state, errorMessage: action.payload };
     default:
