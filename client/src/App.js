@@ -8,6 +8,10 @@ import Feature from "./components/Feature";
 import Signout from "./components/Auth/Signout";
 import Signin from "./components/Auth/Signin/Signin";
 
+import userList from "./components/User/usersList/usersList";
+import userNew from "./components/User/userForm/UserFormNew/userNew";
+import userUpdate from "./components/User/userForm/UserFormUpdate/userUpdate";
+
 const App = (props) => {
   return (
     <Layout>
@@ -17,9 +21,11 @@ const App = (props) => {
         <Route path="/users" component={Feature} />
         <Route path="/signout" component={Signout} />
         <Route path="/signin" component={Signin} />
+        <Route path="/userList" component={userList} />
+        <Route path="/user/create" component={userNew} />
+        <Route path="/user/edit/:id" component={userUpdate} />
       </Switch>
     </Layout>
   );
-};
-
+  }
 export default App;
