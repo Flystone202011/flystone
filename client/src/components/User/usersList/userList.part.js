@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
+//userListで利用するユーザーを表示する行
+//material-uiを利用しているが、Linkはリダイレクトするので使うことができない
 const UserListPart=(props)=>{
     
     return(

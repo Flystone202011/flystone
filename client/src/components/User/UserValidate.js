@@ -1,3 +1,5 @@
+//formで使用したvalidateの設定ファイル。
+
 const ErrorMessages = {
     required: '必須項目です。',
     password: '英字、数字を組み合わせた8文字以上16文字以内で入力。',
@@ -9,6 +11,7 @@ const Regex = {
     userId:/^(?=.*?[a-zA-Z])(?=.*?\d)[!-\~]{3,9}$/
 }
 
+//上で設定した条件やメッセージを組み合わせてヴァリデーションを作る。
 export const required = value => (value || typeof value === 'number' ? undefined : ErrorMessages.required)
 
 export const password = value => (value && !Regex.password.test(value) ? ErrorMessages.password : undefined)

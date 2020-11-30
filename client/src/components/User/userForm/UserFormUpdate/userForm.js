@@ -14,14 +14,17 @@ import { connect } from 'react-redux';
 class UserFormUpdate extends Component{
 
     renderFields(){
+        //formUpdateFieldsで表示するものを設定したので、field部品にひとつづつ取り出してセットして表示する。
         return formUpdateFields.map(formField=>{
             if(formField.name==="password"){
                 return(
+                //redux-formを利用するためのField。importして利用。
                 <Field
                     key={formField.name}
                     label={formField.label}
                     type={formField.type}
                     name={formField.name}
+                    //扱う形式のコンポーネントを設定できる。
                     component={userField}
                     validate={[Validator.password, Validator.required]}
                     />
@@ -54,6 +57,7 @@ class UserFormUpdate extends Component{
     render(){
         return(
             <Grid container alignItems="center" justify="center">
+                {/* ボタンのアクションを呼び出し先で表示できるように設定している */}
                 <form onSubmit={this.props.handleSubmit(this.props.onUserSubmit)}>
                     {this.renderFields()}
                     <Link href="/userList">
@@ -67,10 +71,13 @@ class UserFormUpdate extends Component{
         )
     }
 }
+//これはredux-formで初期値を設定する方法で、redux(ここではstate.user.username)から取得して設定している。
 const mapStateToProps = (state) => ({
     initialValues: {username:state.user.username},
   })
 
+//mapStateToPropsのconnectを行い、reduxFormで入力内容をreduxに入れる。formはstoreで登録したredux-formのもので、ここではuserFormUpdateで保存する。
+//そしてUserFormUpdateにつなげる。
   export default connect(
     mapStateToProps
   )(reduxForm({

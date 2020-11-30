@@ -44,6 +44,7 @@ class UserList extends Component{
         })
     }
     //user一覧のリスト
+    //userListを表示するためにUserListPartを利用する。
     userList(){
         return this.state.users.map(currentUser=>{
             return<UserListPart user={currentUser} deleteUser={this.deleteUser} key={currentUser._id} setUsername={this.props.setUsername}/>;
@@ -51,8 +52,10 @@ class UserList extends Component{
     }
     render(){
         return(
+        //グリッドで一つの塊としているbootstrapの縦分割の考えと同じ
         <Grid container alignItems="center" justify="center">
             <Typography variant="h5" gutterBottom>ユーザー一覧</Typography>
+            {/* react-router-domのLinkはtoでurlを変える */}
             <Link to="/user/create">
                 新規登録
             </Link>
@@ -75,6 +78,8 @@ class UserList extends Component{
     }
 }
 
+//mapDispatchToPtops=reduxを対象のコンポーネントでpropsで扱えるようにまとめる
+//英語の意味からpropsとしてdispatchを使うということ
 function mapDispatchToProps(dispatch) {
     return {
       setUsername(username){
@@ -82,5 +87,7 @@ function mapDispatchToProps(dispatch) {
       }
     };
   }
-
+//connectで設定したmapStateToPropsとmapDispatchToPropsを対象のコンポーネントにつなげることができる。
+//connectの第一引数にmapStateToProps、第二引数にmapDispatchToProps。設定されていなければnullでよく、
+//mapStateToPropsのみの利用であれば第一引数のみでいい。
   export default connect(null,mapDispatchToProps )(withRouter(UserList));

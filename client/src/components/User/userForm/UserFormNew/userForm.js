@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 
 import {Link} from "react-router-dom";
 
-
+//新規登録フォームのコンポーネント
 class UserFormNew extends Component{
     renderFields(){
         return formNewFields.map(formField=>{

@@ -3,6 +3,7 @@
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 
+//テキスト部分を担当する部品
 export default({input,label,type,meta:{error,touched}})=>{
     return(
         <div>
