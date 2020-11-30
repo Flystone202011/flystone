@@ -1,7 +1,11 @@
-const userReducer=(state = { username: 'default' },action)=>{
+const USERNAME = {
+    username: "",
+  };
+
+const userReducer=(state = USERNAME,action)=>{
     switch(action.type){
         case "ADD_USERNAME":
-            return Object.assign({}, state, { username: action.payload })
+            return {...state,username:action.payload}
         default:
             return state;
     }

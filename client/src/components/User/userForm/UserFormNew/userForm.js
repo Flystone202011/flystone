@@ -6,8 +6,9 @@ import userField from "../userField";
 import formNewFields from "./formNewFields";
 import * as Validator from "../../UserValidate";
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
+
+import {Link} from "react-router-dom";
 
 
 class UserFormNew extends Component{
@@ -68,7 +69,7 @@ class UserFormNew extends Component{
             <Grid container alignItems="center" justify="center">
                 <form  onSubmit={this.props.handleSubmit(this.props.onUserSubmit)}>
                     {this.renderFields()}
-                    <Link href="/userList">
+                    <Link to="/userList">
                         一覧に戻る
                     </Link>
                     <Button variant="contained" type="submit" color="primary">

@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import axios from "axios";
 import UserListPart from "./userList.part";
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,8 +12,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
+import { connect } from "react-redux";
+import * as actions from '../../../store/actions';
+import { withRouter } from 'react-router-dom';
+
 //user一覧
-export default class UserList extends Component{
+class UserList extends Component{
     constructor(props){
         super(props);
 
@@ -42,14 +46,14 @@ export default class UserList extends Component{
     //user一覧のリスト
     userList(){
         return this.state.users.map(currentUser=>{
-            return<UserListPart user={currentUser} deleteUser={this.deleteUser} key={currentUser._id}/>;
+            return<UserListPart user={currentUser} deleteUser={this.deleteUser} key={currentUser._id} setUsername={this.props.setUsername}/>;
         })
     }
     render(){
         return(
         <Grid container alignItems="center" justify="center">
             <Typography variant="h5" gutterBottom>ユーザー一覧</Typography>
-            <Link href="/user/create">
+            <Link to="/user/create">
                 新規登録
             </Link>
             <TableContainer>
@@ -70,3 +74,13 @@ export default class UserList extends Component{
         )
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+      setUsername(username){
+        dispatch(actions.adduser(username));
+      }
+    };
+  }
+
+  export default connect(null,mapDispatchToProps )(withRouter(UserList));
